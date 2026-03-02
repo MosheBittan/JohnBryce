@@ -1,4 +1,6 @@
 resource "aws_instance" "web" {
+    # AMI ID NGINX = ami-03d1d24d942df7614
+    # AMI ID Ubuntu = ami-025d7bea93113b6cc
   ami = "ami-025d7bea93113b6cc"
   # This association the public ip to the machine
   associate_public_ip_address = true
