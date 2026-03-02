@@ -2,7 +2,7 @@ resource "aws_instance" "web" {
   ami = "ami-025d7bea93113b6cc"
   # This association the public ip to the machine
   associate_public_ip_address = true
-  instance_type               = "t3.micro"
+  instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public.id
   vpc_security_group_ids      = [aws_security_group.public_http_traffic.id]
 
@@ -37,13 +37,6 @@ resource "aws_vpc_security_group_ingress_rule" "ssh" {
   to_port           = 22
   ip_protocol       = "tcp"
 }
-# resource "aws_vpc_security_group_ingress_rule" "https" {
-#   security_group_id = aws_security_group.public_http_traffic.id
-#   cidr_ipv4         = "0.0.0.0/0"
-#   from_port         = 443
-#   to_port           = 443
-#   ip_protocol       = "tcp"
-# }
 
 output "public-ip" {
   value = aws_instance.web.public_ip
